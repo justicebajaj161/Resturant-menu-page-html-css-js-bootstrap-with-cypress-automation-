@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "@cypress/instrument-cra": "^1.4.0",
+    "cypress": "^12.17.4",
+    "start-server-and-test": "^2.0.0"
+  },
+  "devDependencies": {
+    "@cypress/code-coverage": "^3.11.0",
+    "babel-plugin-istanbul": "^6.1.1"
+  }
+}
