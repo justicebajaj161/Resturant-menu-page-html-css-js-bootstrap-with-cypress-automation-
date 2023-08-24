@@ -1,4 +1,4 @@
-const url = `project_resturant/index.html`;
+const url = `index.html`;
 
 describe('Restaurant Menu Tests', () => {
 
