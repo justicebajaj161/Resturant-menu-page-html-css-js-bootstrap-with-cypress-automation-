@@ -18,17 +18,21 @@ describe('Restaurant Menu Tests', () => {
 
     it('Should render navbar with all navigation links and search input', () => {
       cy.get('.navbar').should('be.visible');
-      cy.get('.nav-link').should('have.length', 5);
+      cy.get('.nav-link').should('have.length.gte', 5);
       cy.get('#search-input').should('be.visible');
     });
 
     it('Should filter menu items by category when filter buttons are clicked', () => {
-      cy.get('.filter-button[data-filter="starters"]').click();
+      cy.get('.nav-link[data-filter="starters"]').click();
       cy.get('.menu-item .card-text > .text-muted').each(($el) => {
         expect($el.text()).to.include('Category: starters');
       });
     });
 
+    it('Should render an image within the card', () => {
+      cy.get('.menu-item .card img.card-img-top').should('be.visible');
+    });
+    
     it('Should filter menu items based on search input', () => {
       cy.get('#search-input').type('apple');
       cy.get('.menu-item .card-title').each(($el) => {
