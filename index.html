@@ -87,6 +87,24 @@
     background-color: rgb(0,0,0);
     background-color: rgba(0,0,0,0.4);
 }
+#menu {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+@media (min-width: 576px) {
+    #menu {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 992px) {
+    #menu {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
 
 .modal-content {
     background-color: #fefefe;
@@ -177,7 +195,7 @@
   
   function displayMenuItems(menuItems) {
     let displayMenu = menuItems.map(function (item) {
-      return `<div class="menu-item col-12 col-md-6 col-lg-4">
+      return `<div class="menu-item">
       <div class="card">
         <img src="${item.img}" class="card-img-top" alt="${item.title}">
         <div class="card-body">

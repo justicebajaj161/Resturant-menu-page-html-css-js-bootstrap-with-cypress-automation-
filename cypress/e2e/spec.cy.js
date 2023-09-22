@@ -46,7 +46,25 @@ describe('Restaurant Menu Tests', () => {
     });
 
   });
+  context('Medium view', () => {
 
+    beforeEach(() => {
+      cy.viewport(768, 1024); // Set viewport to typical medium screen size
+    });
+  
+    it('Should render two menu items in a row', () => {
+      cy.get('#menu').find('.menu-item').then(($items) => {
+        expect($items).to.have.length.gte(2); // Ensure there are at least two items
+        const firstItemRect = $items[0].getBoundingClientRect();
+        const secondItemRect = $items[1].getBoundingClientRect();
+        expect(firstItemRect.top).to.eq(secondItemRect.top); // Ensure the two items are on the same row
+      });
+    });
+  
+    // You can add more tests specific to medium view if needed
+  
+  });
+  
   context('Mobile view', () => {
 
     beforeEach(() => {
