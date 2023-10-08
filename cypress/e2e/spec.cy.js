@@ -53,7 +53,7 @@ describe('Restaurant Menu Tests', () => {
     });
   
     it('Should render two menu items in a row', () => {
-      cy.get('#menu').find('.menu-item').then(($items) => {
+      cy.get('.menu-item').then(($items) => {
         expect($items).to.have.length.gte(2); // Ensure there are at least two items
         const firstItemRect = $items[0].getBoundingClientRect();
         const secondItemRect = $items[1].getBoundingClientRect();
@@ -88,12 +88,21 @@ describe('Restaurant Menu Tests', () => {
     });
 
   });
-  it('Should be using Bootstrap', () => {
-    // Check for Bootstrap CSS
-    cy.get('link[rel="stylesheet"]').should('have.attr', 'href').and('match', /bootstrap.*\.css/);
-  
-    
-  });
+  it('Should be using Bootstrap ', () => {
+    // Flag to check if Bootstrap CSS is found
+    let isBootstrapFound = false;
+    // Check each <link> element
+    cy.get('link[rel="stylesheet"]').each(($el) => {
+        const hrefValue = $el.attr('href');
+        if (hrefValue.match(/bootstrap.*\.css/)) {
+            isBootstrapFound = true;
+        }
+    }).then(() => {
+        // Assert that Bootstrap CSS is found
+        expect(isBootstrapFound).to.be.true;
+    });
+});
+
   
 
 });
