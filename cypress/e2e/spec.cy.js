@@ -1,16 +1,13 @@
 const url = `index.html`;
 
-describe('Restaurant Menu Tests', () => {
+describe('Restaurant Menu Tests Desktop view', () => {
 
   beforeEach(() => {
     cy.visit(url);
+    cy.viewport(1280, 720);
   });
 
-  context('Desktop view', () => {
-
-    beforeEach(() => {
-      cy.viewport(1280, 720);
-    });
+   
 
     it('Should render menu items correctly', () => {
       cy.get('.menu-item').should('have.length.gte', 1);
@@ -45,10 +42,12 @@ describe('Restaurant Menu Tests', () => {
       cy.get('.nav-link').should('have.class', 'nav-link');
     });
 
-  });
-  context('Medium view', () => {
-
+  })
+ 
+    
+  describe('Restaurant Menu Tests medium view', () => {
     beforeEach(() => {
+      cy.visit(url);
       cy.viewport(768, 1024); // Set viewport to typical medium screen size
     });
   
@@ -63,11 +62,12 @@ describe('Restaurant Menu Tests', () => {
   
     // You can add more tests specific to medium view if needed
   
-  });
+  })
   
-  context('Mobile view', () => {
+  describe('Restaurant Menu Tests phone view', () => {
 
     beforeEach(() => {
+      cy.visit(url);
       cy.viewport(375, 667);
     });
 
@@ -88,6 +88,15 @@ describe('Restaurant Menu Tests', () => {
     });
 
   });
+
+
+
+  describe('Restaurant Menu Tests bootstrap integration', () => {
+
+    beforeEach(() => {
+      cy.visit(url);
+    });
+
   it('Should be using Bootstrap ', () => {
     // Flag to check if Bootstrap CSS is found
     let isBootstrapFound = false;
@@ -101,8 +110,10 @@ describe('Restaurant Menu Tests', () => {
         // Assert that Bootstrap CSS is found
         expect(isBootstrapFound).to.be.true;
     });
-});
+
 
   
 
 });
+
+  })
